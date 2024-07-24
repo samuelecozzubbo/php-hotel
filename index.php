@@ -42,6 +42,16 @@
 
     $hotel_keys= array_keys($hotels[0]);
 /*     var_dump($hotel_keys); */
+/* CHECK PARCHEGGIO */
+$check = isset($_GET['check']) ? true : false;
+$hotels_filter = [''];
+foreach($hotels as $hotel){
+    if($hotel['parking']){
+        $hotels_filter[] = $hotel;
+    }
+}
+echo "<pre>" . var_dump($hotels) .  "</pre>";
+echo "<pre>" . var_dump($hotels_filter) .  "</pre>";
 
 ?>
 
@@ -59,6 +69,14 @@
         <h1>PHP HOTEL</h1>
         <div class="row">
             <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Solo con parcheggio
+                </label>
+            </div>
+            </div>
+            <div class="col-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -68,21 +86,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($hotels as $hotel): ?>
-                        <tr>
-                            <?php foreach($hotel as $keys => $value): ?>
-                                <td>
-                                    <?php
-                                    if($keys == 'parking'){
-                                        echo $value? 'Si':'No';
-                                    }else{
-                                        echo $value;
-                                    }
-                                     ?>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach; ?>
+                    <?php if($check): ?>
+                        <?php foreach($hotels as $hotel): ?>
+                            <tr>
+                                <?php foreach($hotel as $keys => $value): ?>
+                                    <td>
+                                        <?php
+                                        if($keys == 'parking'){
+                                            echo $value? 'Si':'No';
+                                        }else{
+                                            echo $value;
+                                        }
+                                        ?>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php foreach($hotels_filter as $hotel): ?>
+                            <tr>
+                                <?php foreach($hotel as $keys => $value): ?>
+                                    <td>
+                                        <?php
+                                        if($keys == 'parking'){
+                                            echo $value? 'Si':'No';
+                                        }else{
+                                            echo $value;
+                                        }
+                                            ?>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
             </div>
