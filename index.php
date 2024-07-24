@@ -70,9 +70,15 @@
                 <tbody>
                     <?php foreach($hotels as $hotel): ?>
                         <tr>
-                            <?php foreach($hotel as $value): ?>
+                            <?php foreach($hotel as $keys => $value): ?>
                                 <td>
-                                    <?php echo $value; ?>
+                                    <?php
+                                    if($keys == 'parking'){
+                                        echo $value? 'Si':'No';
+                                    }else{
+                                        echo $value;
+                                    }
+                                     ?>
                                 </td>
                             <?php endforeach; ?>
                         </tr>
