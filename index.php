@@ -43,15 +43,15 @@
     $hotel_keys= array_keys($hotels[0]);
 /*     var_dump($hotel_keys); */
 /* CHECK PARCHEGGIO */
-$check = isset($_GET['check']) ? true : false;
-$hotels_filter = [''];
+$check = isset($_GET['check']) ? false : true;
+$hotels_filter = [];
 foreach($hotels as $hotel){
     if($hotel['parking']){
         $hotels_filter[] = $hotel;
     }
 }
-echo "<pre>" . var_dump($hotels) .  "</pre>";
-echo "<pre>" . var_dump($hotels_filter) .  "</pre>";
+/* echo "<pre>" . var_dump($hotels) .  "</pre>";
+echo "<pre>" . var_dump($hotels_filter) .  "</pre>"; */
 
 ?>
 
@@ -69,12 +69,15 @@ echo "<pre>" . var_dump($hotels_filter) .  "</pre>";
         <h1>PHP HOTEL</h1>
         <div class="row">
             <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Solo con parcheggio
-                </label>
-            </div>
+                <form action="index.php" method="GET">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Solo con parcheggio
+                        </label>
+                        <button type="submit" class="btn btn-primary">Filtra</button>
+                    </div>
+                </form>
             </div>
             <div class="col-12">
             <table class="table">
