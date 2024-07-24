@@ -41,7 +41,7 @@
     ];
 
     $hotel_keys= array_keys($hotels[0]);
-    var_dump($hotel_keys);
+/*     var_dump($hotel_keys); */
 
 ?>
 
@@ -60,33 +60,25 @@
         <div class="row">
             <div class="col-12">
             <table class="table">
-  <thead>
-    <tr>
-        <?php foreach($hotel_keys as $key): ?>
-            <?php echo "<th scope='col'>$key</th>"?>
-        <?php endforeach ?>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+                <thead>
+                    <tr>
+                        <?php foreach($hotel_keys as $key): ?>
+                            <?php echo "<th scope='col'>$key</th>"?>
+                        <?php endforeach ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($hotels as $hotel): ?>
+                        <tr>
+                            <?php foreach($hotel as $value): ?>
+                                <td>
+                                    <?php echo $value; ?>
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
             </div>
         </div>
     </div>
