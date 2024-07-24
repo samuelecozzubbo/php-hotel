@@ -44,9 +44,10 @@
 /*     var_dump($hotel_keys); */
 /* CHECK PARCHEGGIO */
 $check = isset($_GET['check']) ? false : true;
+$vote_filter = isset($_GET['vote']) ? (int)$_GET['vote'] : 0;
 $hotels_filter = [];
 foreach($hotels as $hotel){
-    if($hotel['parking']){
+    if($hotel['parking'] || $vote_filter == $hotel['vote']){
         $hotels_filter[] = $hotel;
     }
 }
@@ -70,11 +71,55 @@ echo "<pre>" . var_dump($hotels_filter) .  "</pre>"; */
         <div class="row">
             <div class="col-12">
                 <form action="index.php" method="GET">
-                    <div class="form-check">
+                    <div class="form-check d-flex gap-1">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check">
                         <label class="form-check-label" for="flexCheckDefault">
                             Solo con parcheggio
                         </label>
+                        <!-- stelle hotel -->
+                        <!-- 0 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="0" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                0
+                            </label>
+                        </div>
+                        <!-- 1 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="1" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                1
+                            </label>
+                        </div>
+                        <!-- 2 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="2" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                2
+                            </label>
+                        </div>
+                        <!-- 3 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="3" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                3
+                            </label>
+                        </div>
+                        <!-- 4 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="4" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                4
+                            </label>
+                        </div>
+                        <!-- 5 -->
+                        <div class="form-check">        
+                            <input class="form-check-input" type="radio" value="5" name="vote" id="vote">
+                            <label class="form-check-label" for="vote">
+                                5
+                            </label>
+                        </div>
+                         
                         <button type="submit" class="btn btn-primary">Filtra</button>
                     </div>
                 </form>
